@@ -1,0 +1,9 @@
+2025-04-04T04:33:17.330000Z [INFO ] build_all_recommendations | Iniciando geração de email de recomendações
+2025-04-04T04:33:17.331000Z [INFO ] build_all_recommendations | Header gerado
+2025-04-04T04:33:17.331000Z [INFO ] build_all_recommendations | Amazon gerada
+2025-04-04T04:33:17.331000Z [INFO ] build_all_recommendations | Instant Gaming gerada
+2025-04-04T04:33:17.331000Z [INFO ] build_all_recommendations | Livros Gratuitos gerada
+2025-04-04T04:33:17.331000Z [INFO ] build_all_recommendations | Mercado Livre Play gerada
+2025-04-04T04:33:17.332000Z [INFO ] build_all_recommendations | Netflix gerada
+2025-04-04T04:33:17.332000Z [INFO ] build_all_recommendations | footer gerado
+2025-04-04T04:33:18.293000Z [INFO ] build_all_recommendations | Email enviado com sucesso
