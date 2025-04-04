@@ -1,7 +1,7 @@
 module repository
 
 import shareds.db
-import server.features.instant_gaming.entities
+import instant_gaming.entities
 
 pub fn import(entitie entities.InstantGamingProduct) ! {
 	mut dbase := db.ConnectionDb.new()!

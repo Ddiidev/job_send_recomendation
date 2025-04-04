@@ -15,3 +15,11 @@ pub:
 	genders              types.Genders
 	thumbnail_link       types.ThumbLink
 }
+
+pub fn (l LivrosGratuitosProduct) has_pdf() string {
+	return '✅'
+}
+
+pub fn (l LivrosGratuitosProduct) has_read_online() string {
+	return '✅'
+}

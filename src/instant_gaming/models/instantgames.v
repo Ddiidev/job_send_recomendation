@@ -23,3 +23,23 @@ pub:
 	current_date         time.Time
 	images               []InstantGamingProductImage
 }
+
+pub fn (igp InstantGamingProduct) get_price() string {
+	return '${igp.price:3.2f}'
+}
+
+pub fn (igp InstantGamingProduct) get_discount() string {
+	return if discount := igp.discount {
+		'${discount}'
+	} else {
+		'0'
+	}
+}
+
+pub fn (igp InstantGamingProduct) get_old_price() string {
+	return if price_old := igp.price_old {
+		'${price_old:3.2f}'
+	} else {
+		'0.00'
+	}
+}
