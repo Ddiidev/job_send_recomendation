@@ -36,7 +36,7 @@ fn main() {
 			dump('Env Dev')
 		}
 
-		// services.send_recomendations()
+		services.send_recomendations()
 
 		$if debug? {
 			time.sleep(time.minute * 2)
