@@ -1,6 +1,7 @@
 module email_builders
 
 import strings
+import repository
 import shareds.logger
 import amazon.models as amazon_models
 import netflix.models as netflix_models
@@ -10,7 +11,7 @@ import livros_gratuitos.models as livros_gratuitos_models
 import mercado_livre_play.models as mercado_livre_play_models
 
 // Função para construir e enviar um email com recomendações de todas as plataformas
-pub fn build_all_recommendations(email string,
+pub fn build_all_recommendations(contact_id int, email string,
 	amazon_products []amazon_models.AmazonProduct,
 	instant_gaming_product instant_gaming_models.InstantGamingProduct,
 	livros_gratuitos_product livros_gratuitos_models.LivrosGratuitosProduct,
@@ -32,7 +33,7 @@ pub fn build_all_recommendations(email string,
 
 	log.info('${@FN} | Header gerado')
 
-	// Adicionar produtos da Amazon
+	dump('(Email)Iniciado recomendação para Amazon')
 	for amazon in amazon_products {
 		sb.write_string(generate_amazon_html(amazon))
 	}
@@ -40,21 +41,25 @@ pub fn build_all_recommendations(email string,
 	log.info('${@FN} | Amazon gerada')
 
 	// Adicionar produto do Instant Gaming
+	dump('(Email)Iniciado recomendação para Instant Gaming')
 	sb.write_string(generate_instant_gaming_html(instant_gaming_product))
 
 	log.info('${@FN} | Instant Gaming gerada')
 
 	// Adicionar produto de Livros Gratuitos
+	dump('(Email)Iniciado recomendação para Livros Gratuitos')
 	sb.write_string(generate_livros_gratuitos_html(livros_gratuitos_product))
 
 	log.info('${@FN} | Livros Gratuitos gerada')
 
 	// Adicionar produto do Mercado Livre Play
+	dump('(Email)Iniciado recomendação para Mercado Livre Play')
 	sb.write_string(generate_mercado_livre_play_html(mercado_livre_play_product))
 
 	log.info('${@FN} | Mercado Livre Play gerada')
 
 	// Adicionar produto da Netflix
+	dump('(Email)Iniciado recomendação para Netflix')
 	sb.write_string(generate_netflix_html(netflix_product))
 
 	log.info('${@FN} | Netflix gerada')
@@ -69,5 +74,9 @@ pub fn build_all_recommendations(email string,
 	hemail.send(email, 'Recomendações MaisFoco.life', sb.str()) or {
 		log.error('${@FN} | Erro ao enviar email: ${err}')
 	}
+	repository.update_latest_recomendation(contact_id) or {
+		log.error('${@FN} | Erro ao atualizar latest_recomendation: ${err}')
+	}
+	dump('Email enviado (${email})')
 	log.info('${@FN} | Email enviado com sucesso')
 }

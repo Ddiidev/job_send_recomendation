@@ -21,7 +21,5 @@ pub fn send_image(param models.RequestImage) !models.ResponseImage {
 		return error('${resp.status_code} - ${resp.status_msg}')
 	}
 
-	return json.decode(models.ResponseImage, resp.body) or {
-		models.ResponseImage{}
-	}
+	return json.decode(models.ResponseImage, resp.body) or { models.ResponseImage{} }
 }

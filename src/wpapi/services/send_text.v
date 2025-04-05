@@ -21,7 +21,5 @@ pub fn send_text(param models.RequestText) !models.ResponseText {
 		return error('${resp.status_code} - ${resp.status_msg}')
 	}
 
-	return json.decode(models.ResponseText, resp.body) or {
-		models.ResponseText{}
-	}
+	return json.decode(models.ResponseText, resp.body) or { models.ResponseText{} }
 }

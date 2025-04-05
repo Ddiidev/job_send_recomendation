@@ -60,5 +60,5 @@ fn get_env(key string, env_map map[string]string) string {
 	if sys_env != '' {
 		return sys_env
 	}
-	return env_map[key] or { '' } //panic('Missing required environment variable: ${key}') }
+	return env_map[key] or { '' } // panic('Missing required environment variable: ${key}') }
 }

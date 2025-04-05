@@ -1,7 +1,5 @@
 module email_builders
 
-
-
 // Função para gerar o cabeçalho HTML comum para todos os emails
 pub fn generate_html_header(title string) string {
 	return $tmpl('./views/header.html')
