@@ -34,7 +34,6 @@ pub fn send_recomendations() {
 	}
 
 	for contact in contatcs {
-		dump(contact)
 		if threads.len == 4 {
 			threads.wait()
 			threads = []

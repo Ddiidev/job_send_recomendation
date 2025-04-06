@@ -29,5 +29,8 @@ pub fn build_all_recommendations(contact_id int, whatsapp string,
 	dump('(Whatapp)Iniciado recomendação para Netflix')
 	build_netflix(whatsapp, netflix_product)
 
+	dump('(Whatapp)Adicionando informações de adicionais')
+	build_infos(whatsapp)
+
 	repository.update_latest_recomendation(contact_id) or {}
 }

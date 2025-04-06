@@ -64,6 +64,11 @@ pub fn build_all_recommendations(contact_id int, email string,
 
 	log.info('${@FN} | Netflix gerada')
 
+	dump('(Email)Adicionando informações de adicionais')
+	build_infos(email)
+
+	log.info('${@FN} | Informações adicionadas geradas')
+
 	// Adicionar o rodapé do email
 	sb.write_string(generate_html_footer())
 
