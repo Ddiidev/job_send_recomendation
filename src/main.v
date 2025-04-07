@@ -55,7 +55,6 @@ fn main() {
 				time.sleep(wait_time)
 			} else if current_time > range_start && current_time < range_end && is_primary_runner {
 				println('Primeira vez: Executando imediatamente por estar entre as ${range_start.custom_format('hh:mm:ss')}h e ${range_end.custom_format('hh:mm:ss')}h')
-				is_primary_runner = false
 			}
 		} $else $if debug ? {
 			if !(current_time > range_start && current_time < range_end && is_primary_runner) {
@@ -63,9 +62,9 @@ fn main() {
 				time.sleep(time.minute * 2)
 			} else if current_time > range_start && current_time < range_end && is_primary_runner {
 				println('Primeira vez: Executando imediatamente por estar entre as ${range_start.custom_format('hh:mm:ss')}h e ${range_end.custom_format('hh:mm:ss')}h')
-				is_primary_runner = false
 			}
 		}
+		is_primary_runner = false
 
 		println('--> Enviando recomendações...')
 		services.send_recomendations()

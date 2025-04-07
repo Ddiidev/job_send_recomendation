@@ -33,7 +33,7 @@ fn (h AppServer) handle(req http.Request) http.Response {
 pub fn start_server() ! {
 	mut server := http.Server{
 		handler: AppServer{}
-		addr: ':9009'
+		addr:    ':9009'
 	}
 	server.listen_and_serve()
 }
