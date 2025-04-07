@@ -47,5 +47,7 @@ COPY ../start.sh /app/start.sh
 RUN chmod +x /app/start.sh
 RUN ls -la /app/start.sh
 
+EXPOSE 9009
+
 # Comando para iniciar a aplicação
 CMD ["/bin/bash", "/app/start.sh"]
