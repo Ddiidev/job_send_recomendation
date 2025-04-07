@@ -46,11 +46,13 @@ pub fn build_all_recommendations(contact_id int, email string,
 
 	log.info('${@FN} | Instant Gaming gerada')
 
-	// Adicionar produto de Livros Gratuitos
-	dump('(Email)Iniciado recomendação para Livros Gratuitos')
-	sb.write_string(generate_livros_gratuitos_html(livros_gratuitos_product))
+	if livros_gratuitos_product.title != '' {
+		// Adicionar produto de Livros Gratuitos
+		dump('(Email)Iniciado recomendação para Livros Gratuitos')
+		sb.write_string(generate_livros_gratuitos_html(livros_gratuitos_product))
 
-	log.info('${@FN} | Livros Gratuitos gerada')
+		log.info('${@FN} | Livros Gratuitos gerada')
+	}
 
 	// Adicionar produto do Mercado Livre Play
 	dump('(Email)Iniciado recomendação para Mercado Livre Play')

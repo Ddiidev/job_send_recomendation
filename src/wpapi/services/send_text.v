@@ -10,11 +10,13 @@ pub fn send_text(param models.RequestText) !models.ResponseText {
 
 	url := '${const_url}/${env.whatsapp_api_key_instance}/message/text'
 
+	// resp := http.post_json(url, json.encode(param))!
 	resp := http.fetch(
-		method: .post
-		url:    url
-		data:   json.encode(param)
-		header: http.new_header(key: .content_type, value: 'application/json')
+		method:      .post
+		url:         url
+		data:        json.encode(param)
+		header:      http.new_header(key: .content_type, value: 'application/json')
+		max_retries: 1
 	)!
 
 	if resp.status_code != 200 {

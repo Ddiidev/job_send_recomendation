@@ -26,28 +26,4 @@ while [ $DB_RETRY_COUNT -lt $MAX_DB_RETRIES ]; do
     fi
 done
 
-# Tentativas de reinicialização da aplicação
-MAX_RETRIES=10
-RETRY_COUNT=0
-
-while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
-    echo "Iniciando JobSendRecomendation (tentativa $((RETRY_COUNT+1))/$MAX_RETRIES)"
-    
-    # Iniciar a aplicação
-    ./JobSendRecomendation
-    
-    # Verificar código de saída
-    EXIT_CODE=$?
-    
-    if [ $EXIT_CODE -eq 0 ]; then
-        echo "Aplicação encerrada normalmente."
-        exit 0
-    else
-        echo "Aplicação encerrada com erro (código $EXIT_CODE). Reiniciando..."
-        RETRY_COUNT=$((RETRY_COUNT+1))
-        sleep 5
-    fi
-done
-
-echo "Número máximo de tentativas excedido. Saindo."
-exit 1
+./JobSendRecomendation

@@ -1,8 +1,8 @@
 module main
 
 import time
-import recomendation.services
 import maisfoco_server
+import recomendation.services
 
 const sabado = 6
 const domingo = 7
@@ -48,8 +48,8 @@ fn main() {
 			wait_time = serven_hour_today - current_time
 		}
 
-		$if !debug ? {
-			println('Env Prod')
+		$if prod {
+			println('--> PRODUÇÃO')
 			if !(current_time > range_start && current_time < range_end && is_primary_runner) {
 				println('Aguardando ${wait_time.debug()} até o próximo envio...')
 				time.sleep(wait_time)
@@ -57,6 +57,7 @@ fn main() {
 				println('Primeira vez: Executando imediatamente por estar entre as ${range_start.custom_format('hh:mm:ss')}h e ${range_end.custom_format('hh:mm:ss')}h')
 			}
 		} $else $if debug ? {
+			println('--> DESENVOLVIMENTO')
 			if !(current_time > range_start && current_time < range_end && is_primary_runner) {
 				println('Aguardando ${wait_time.debug()} até o próximo envio...')
 				time.sleep(time.minute * 2)

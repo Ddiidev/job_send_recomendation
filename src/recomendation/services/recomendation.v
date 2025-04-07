@@ -32,26 +32,28 @@ pub fn send_recomendations() {
 	mercado_livre_play_product := mercado_livre_play_controllers.get_recomendation(mut log) or {
 		mercado_livre_play_models.MercadoLivrePlayProduct{}
 	}
+	dump(contatcs)
 
 	for contact in contatcs {
+		println('Número de threads atual: ${threads.len}')
 		if threads.len == 4 {
 			threads.wait()
 			threads = []
 		}
 
 		if contact.whatsapp != none {
-			dump('Enviando via whatsapp (add a pilha de threads)')
+			dump('Whasapp -> Enviando via whatsapp (add a pilha de threads)')
 			threads << go whtasapp_builders.build_all_recommendations(contact.id, contact.whatsapp,
 				amazon_products, instangaming_product, livros_gratuitos_product, mercado_livre_play_product,
 				netflix_product)
-			dump('Adicionado na pilha de threads')
+			dump('Whasapp -> Adicionado na pilha de threads')
 		}
 		if contact.email != none {
-			dump('Enviando via email (add a pilha de threads)')
+			dump('Email -> Enviando via email (add a pilha de threads)')
 			threads << go email_builders.build_all_recommendations(contact.id, contact.email,
 				amazon_products, instangaming_product, livros_gratuitos_product, mercado_livre_play_product,
 				netflix_product)
-			dump('Adicionado na pilha de threads')
+			dump('Email -> Adicionado na pilha de threads')
 		}
 	}
 

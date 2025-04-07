@@ -33,14 +33,13 @@ WORKDIR /app
 COPY . .
 
 # Instalar dependências do projeto
-RUN v install
 RUN v install https://github.com/ken0x0a/v-dotenv
 
 # Copiar o arquivo .env.local (será substituído pelo volume)
 COPY .env.local .env.local
 
 # Compilar o projeto
-RUN v -prod . -o JobSendRecomendation
+RUN v -enable-globals -prod . -o JobSendRecomendation
 
 # Script de inicialização
 COPY ../start.sh /app/start.sh
