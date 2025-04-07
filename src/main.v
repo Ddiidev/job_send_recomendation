@@ -2,28 +2,33 @@ module main
 
 import time
 import recomendation.services
+import maisfoco_server
+
+const sabado = 6
+const domingo = 7
 
 fn main() {
 	println('Iniciando serviço de recomendação...')
 	mut is_primary_runner := true
+
+	go maisfoco_server.start_server()
 
 	for {
 		current_time := time.now()
 
 		current_date := current_time.custom_format('YYYY-MM-DD')
 		current_hour := current_time.hour
-		week := current_time.day_of_week()
 
 		mut serven_hour_today := time.parse('${current_date} 06:00:00') or { time.now() }
 
 		range_start := time.parse('${current_date} 06:00:00') or { time.now() }
 		range_end := time.parse('${current_date} 08:00:00') or { time.now() }
 
-		serven_hour_today = match week {
-			6 {
+		serven_hour_today = match current_time.day_of_week() {
+			sabado {
 				serven_hour_today.add_days(2)
 			}
-			7 {
+			domingo {
 				serven_hour_today.add_days(1)
 			}
 			else {
